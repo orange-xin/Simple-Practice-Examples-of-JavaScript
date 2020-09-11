@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountingCharactersAndTimesOfString</title>
+    <script>
+        // 判断一个字符串'ilikecoffeeiliketee'中出现次数最多的字符，并统计其次数
+        // 算法思路：利用charAt()遍历这个字符串
+        // 把每个字符都存储给一个对象，如果对象没有该属性则为1，如果有该属性就+1
+        // 遍历该对象，得到最大值和该字符
+
+        var str = 'ilikecoffeeiliketee';
+        var obj = {};
+
+        // 遍历字符串
+        for (var i = 0; i < str.length; i++) {
+            var ch = str.charAt(i);
+            // 若对象的属性存在则将该属性对应的值加一，若对象属性不存在则创建属性并赋值为1
+            if (obj[ch]) {
+                obj[ch]++;
+            } else {
+                obj[ch] = 1;
+            }
+        }
+
+        var targetChar;
+        var max = 0;
+        // 遍历对象
+        for (var k in obj) {
+            // k 得到的是属性名
+            // obj[k] 得到的是属性值
+            if (obj[k] > max) {
+                max = obj[k];
+                targetChar = k;
+            }
+        }
+        console.log(obj);
+        console.log('出现次数最多的字符是' + targetChar + ',出现了' + max + '次');
+    </script>
+</head>
+
+<body>
+    <h1>Counting Characters And Corresponding Times Of String</h1>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleATM</title>
+    <script>
+        // 编写一个简易ATM，实现以下基本功能：
+        // 1. 用户进入后显示操作可输入的操作按钮 1-存钱；2-取钱；3-显示余额；4-退出
+        // 2. 里面现存100元
+        // 3. 如果存钱，则弹出显示存钱后的金额提示框；如果取钱，则弹出显示取钱后的金额提示框
+        // 4. 如果显示余额，则弹出显示余额提示框；如果退出，则弹出退出提示框
+
+        var balance = 100;
+        var choice, moeny;
+
+        do {
+            choice = prompt('请输入您需要的操作：\n 1.存钱\n 2.取钱\n 3.显示余额\n 4.退出 ');
+            switch (parseInt(choice)) {
+                case 1:
+                    moeny = prompt('请输入您要存入的金额数：');
+                    balance += parseInt(moeny);
+                    alert('您现在的余额为：' + balance);
+                    continue;
+                case 2:
+                    moeny = prompt('请输入您要取出的金额数：');
+                    balance -= moeny;
+                    alert('您现在的余额为：' + balance);
+                    continue;
+                case 3:
+                    alert('您现在的余额为：' + balance);
+                    continue;
+                case 4:
+                    alert('您已成功退出');
+                    break;
+                default: 
+                    alert('请输入正确的数字！');
+                    continue;
+            }
+        } while (choice != 4)
+    </script>
+</head>
+    <h1>Simple ATM</h1>
+<body>
+
+</body>
+
+</html>

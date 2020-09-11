@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uniqueArray</title>
+    <script>
+        // 一个数组，除去数组中重复的数组元素，并返回去重之后的数组
+        // 思路：遍历数组，用旧数组里的元素去查找新数组里的元素，如果该元素在新数组当中，则不添加
+
+        /* main logic */
+        function uniqueArray(arr) {
+            var newArr = []; // 空数组，用于保存“独一无二”的元素
+            for (var i = 0; i < arr.length; i++) {
+                // 使用数组内置函数indexOf()，根据返回结果判断新数组中是否已有该元素
+                if (newArr.indexOf(arr[i]) == -1) {
+                    newArr.push(arr[i]); // 使用数组内置函数push()将元素添加到新数组元素的末尾，不需要担心顺序问题
+                }
+            }
+            return newArr;
+        }
+
+        /* output */
+        console.log(uniqueArray([1, 7, 0, 9, 1, 80, 10, 9]));
+
+        /* 另一种写法 */
+        /* var arr = [1, 2, 1, 30, 10, 2];
+        var newArr = [];
+        newArr[0] = arr[0]; // 在这里保证新数组当中有元素，方便下面代码的执行
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < newArr.length; j++) {
+                if (newArr[j] == arr[i]) {
+                    break;
+                } else {
+                    newArr.push(arr[i]);
+                    break;
+                }
+            }
+        }
+        console.log(arr);
+        console.log(newArr); */
+    </script>
+</head>
+
+<body>
+    <h1>Unique Array - 数组去重</h1>
+</body>
+
+</html>
