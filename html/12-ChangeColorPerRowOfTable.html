@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeColorPerRowOfTable</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            margin: 0 auto;
+            padding-top: 10%;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        td {
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>菜品名称</td>
+                    <td>所属菜系</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>锅包肉</td>
+                    <td>东北菜</td>
+                </tr>
+                <tr>
+                    <td>灯影牛肉</td>
+                    <td>川菜</td>
+                </tr>
+                <tr>
+                    <td>煲仔饭</td>
+                    <td>粤菜</td>
+                </tr>
+                <tr>
+                    <td>羊肉泡馍</td>
+                    <td>西北菜</td>
+                </tr>
+                <tr>
+                    <td>太极芋泥</td>
+                    <td>闽菜</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        /* 
+            实现表格效果：当鼠标指向表格的不同行的时候该行的颜色发生改变，当鼠标移除的时候复原 
+        */
+
+        var trs = document.querySelector('tbody').querySelectorAll('tr');
+        for (var i = 0; i < trs.length; i++) {
+            // trs[i].onmouseover=function(){
+            //     for(var i=0; i<trs.length;i++){
+            //         trs[i].style.backgroundColor='';
+            //     }
+            //     this.style.backgroundColor='bisque';
+            // }
+            // 上述函数方法能实现鼠标经过某行的时候某行变色其他行是初始色的功能，也就是隔行换色
+            // 但有一个小bug：在鼠标离开了整个表格后，总是有一行的背景颜色被改变了（也就是鼠标离开前经过的那一行）
+            // 所以这个功能使用排他思想来实现不是非常完善，我们使用下面的方法来实现这个功能
+            trs[i].onmouseover = function () {
+                this.style.backgroundColor = 'bisque';
+            }
+            trs[i].onmouseout = function () {
+                this.style.backgroundColor = '';
+            }
+            // 使用这两个函数来实现此功能个人感觉更好
+
+        }
+    </script>
+</body>
+
+</html>

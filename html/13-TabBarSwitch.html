@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabBarSwitch</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab {
+            margin: 0 auto;
+            width: 50%;
+            background-color: bisque;
+        }
+
+        #tabbar {
+            margin: 0 auto;
+            /* background-color: red; */
+            position: absolute;
+            top: 0;
+        }
+
+        #tab_content {
+            margin: 0 auto;
+            /* background-color: blue; */
+            position: absolute;
+            top: 10%;
+            /* display: none; */
+        }
+
+        li {
+            width: 100px;
+            border: 1px solid black;
+            list-style: none;
+            float: left;
+        }
+
+        .clicked {
+            background-color: bisque;
+        }
+        .item{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab">
+        <div id="tabbar">
+            <ul>
+                <li>商品信息</li>
+                <li>商品参数</li>
+                <li>商品评论</li>
+                <li>售后保障</li>
+            </ul>
+        </div>
+        <div id="tab_content">
+            <div class="item">商品信息相关内容</div>
+            <div class="item">商品参数相关内容</div>
+            <div class="item">商品评论相关内容</div>
+            <div class="item">售后保障相关内容</div>
+        </div>
+    </div>
+    <script>
+        /* 
+            实现tab栏的切换效果，不同选项在下方显示不同的内容
+            如菜单栏中的商品信息、商品参数、商品评论、售后保障等栏目，可参考各大购物平台商品详情页页面内容
+        */
+        var lis = document.getElementsByTagName('li'); // 获取tab上的内容板块
+        var contents = document.getElementById('tab_content').querySelectorAll('.item'); // 获取下方内容板块
+        // 为每个板块初始化事件
+        for (var i = 0; i < lis.length; i++) {
+            // 自定义索引号，方便通过索引号显示对应板块内容
+            lis[i].setAttribute('index', i);
+            // 绑定点击事件
+            lis[i].onclick = function () {
+                // 排他思想，点击后改变颜色
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                    contents[i].style.display='none'; // contents和lis是一一对应的关系，长度相等，所以可以写在同一个循环里
+                }
+                this.className = 'clicked';
+                contents[this.getAttribute('index')].style.display='block';
+            }
+        }
+    </script>
+</body>
+
+</html>

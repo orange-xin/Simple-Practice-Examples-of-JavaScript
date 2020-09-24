@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practice</title>
+    <title>Practice-SeveralObjects</title>
     <script>
-        // 创建一个电脑对象，该对象有颜色、重量、品牌、型号，可以看电影、听音乐、打游戏和敲代码
-        // 创建一个按钮对象，该对象中需要包含宽、高、背景颜色和点击行为
-        // 创建一个车对象，该对象中有重量、颜色、牌子，可以载人、拉货和耕田
+        /* 
+            创建一个电脑对象，该对象有颜色、重量、品牌、型号，可以看电影、听音乐、打游戏和敲代码
+            创建一个按钮对象，该对象中需要包含宽、高、背景颜色和点击行为
+            创建一个车对象，该对象中有重量、颜色、牌子，可以载人、拉货和耕田 
+        */
+
         var computer = {
             color: 'red',
             weight: 10,
             brand: 'lenovo',
-            watch: function(){
+            watch: function () {
                 console.log("I'm watching a movie~");
             },
-            listen: function(){
+            listen: function () {
                 console.log("I'm listening to the music~");
             },
-            play: function(){
+            play: function () {
                 console.log("I'm playing computer games~");
             },
-            code: function(){
+            code: function () {
                 console.log("I'm coding~");
             }
         }
@@ -30,41 +34,43 @@
         button.width = 10;
         button.height = 10;
         button.bgcolor = 'blue';
-        button.click = function(){
+        button.click = function () {
             alert('click');
         }
 
-        function Car(cWeight, cColor, cBrand){
+        function Car(cWeight, cColor, cBrand) {
             this.weight = cWeight;
             this.color = cColor;
             this.brand = cBrand;
-            this.drive = function(){
+            this.drive = function () {
                 console.log("I'm driving~");
             };
-            this.transferGoods = function(){
+            this.transferGoods = function () {
                 console.log("I'm transferring goods~");
             };
-            this.till = function(){
+            this.till = function () {
                 console.log("I'm tilling the ertth~");
             }
         }
 
-        for(var k in computer){
+        for (var k in computer) {
             console.log(k);
             console.log(computer[k]);
         }
-        for(var k in button){
+        for (var k in button) {
             console.log(k);
             console.log(button[k]);
         }
         var carOne = Car(100, 2, 'lenovo');
-        for(var k in carOne){
+        for (var k in carOne) {
             console.log(k);
             console.log(button[k]);
         }
     </script>
 </head>
+
 <body>
     <h1>Practice: Several objects</h1>
 </body>
+
 </html>

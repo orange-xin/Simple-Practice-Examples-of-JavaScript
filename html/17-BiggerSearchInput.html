@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiggerSearchInput.html</title>
+    <style>
+        .con {
+            width: 300px;
+            height: 35px;
+            font-size: 30px;
+            background-color: bisque;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="con"></div>
+        <input type="text" placeholder="请输入需要查询的信息" class="srch">
+    </div>
+    <script>
+        /* 
+            编写一个功能，当搜索框/输入框内有内容的时候在其上方显示一个放大镜效果的盒子
+            并且搜索框/输入框有内容但失去焦点的时候隐藏，有内容获得焦点时显示 
+        */
+
+        var con = document.querySelectorAll('div')[1];
+        var ipt = document.querySelector('input');
+        // 有输入的时候显示，反之隐藏
+        ipt.addEventListener('keyup', function (e) {
+            if (ipt.value == '') {
+                con.style.display = 'none';
+            } else {
+                con.style.display = 'block';
+                con.innerHTML = ipt.value;
+            }
+        })
+        // 失去焦点时隐藏
+        ipt.addEventListener('blur', function () {
+            con.style.display = 'none';
+        })
+        // 获得焦点时显示
+        ipt.addEventListener('focus', function () {
+            if (ipt.value != '') {
+                con.style.display = 'block';
+            }
+        })
+        // 为什么不用keydowm或者keypress：
+        // 这两个方法都是先执行程序再添加内容
+        // 会出现输入框中已有内容但上方放大区并未显示的情况
+        // 并且keypress不识别功能键，使用退格键不能删除内容
+    </script>
+</body>
+
+</html>

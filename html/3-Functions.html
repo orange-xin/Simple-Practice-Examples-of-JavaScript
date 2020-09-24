@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <script>
+        /* 
+            1. 写一个函数，实现反转任意数组
+            2. 写一个函数，实现对任意数字数组的排序 
+        */
+
+        /* 1 */
+        var array = prompt('请输入任意一个数组：\n形如"1,2,3"（注：数组元素之间使用英文逗号隔开）');
+        var treatedArr = array.split(','); // 转化为数组
+        var i, j;
+        reverse(treatedArr);
+        function reverse(arguments) {
+            var arr = [];
+            for (i = arguments.length - 1; i >= 0; i--) {
+                arr[arr.length] = arguments[i];
+            }
+            alert('翻转后的数组为：[' + arr + ']');
+        }
+        
+        /* 2 */
+        array = prompt('请输入一个数字数组：\n形如"1,2,3"（注：数组元素之间使用英文逗号隔开）');
+        treatedArr = array.split(',');
+        queueArr(treatedArr);
+        function queueArr(arguments) {
+            var temp;
+            var flag = prompt('请选择序列方式：\n1. 降序\n2. 升序');
+            switch (parseInt(flag)) {
+                case 1:
+                    // 降序排列
+                    for (i = 0; i < arguments.length; i++) {
+                        for (j = 0; j < arguments.length - 1; j++) {
+                            if (arguments[j] < arguments[j + 1]) {
+                                temp = arguments[j];
+                                arguments[j] = arguments[j + 1]
+                                arguments[j + 1] = temp;
+                            }
+                        }
+                    }
+                    alert('排序后的数组为：[' + arguments + ']');
+                    break;
+                case 2:
+                    // 升序排序
+                    for (i = 0; i < arguments.length; i++) {
+                        for (j = 0; j < arguments.length - 1; j++) {
+                            if (arguments[j] > arguments[j + 1]) {
+                                temp = arguments[j];
+                                arguments[j] = arguments[j + 1]
+                                arguments[j + 1] = temp;
+                            }
+                        }
+                    }
+                    alert('排序后的数组为：[' + arguments + ']');
+                    break;
+                default: alert('请输入规定的选择数字')
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Two Functions</h1>
+</body>
+
+</html>

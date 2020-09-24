@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #withMouse {
+            width: 20px;
+            height: 20px;
+            background-color: bisque;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="withMouse"></div>
+    <script>
+        var square = document.getElementById('withMouse');
+        document.addEventListener('mousemove', function (e) {
+            square.style.left = e.pageX + 'px';
+            square.style.top = e.pageY + 'px';
+            // 千万不要忘记给坐标加单位！！！
+        })
+    </script>
+</body>
+
+</html>

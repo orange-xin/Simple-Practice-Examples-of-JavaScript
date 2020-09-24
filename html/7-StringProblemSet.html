@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StringProblemSet</title>
+    <script>
+        /* 
+            给定一个字符串，如“aabbsskkkiillwasd556655”，问题如下：
+            1. 字符串的长度
+            2. 取出指定位置的字符
+            3. 查找指定字符是否在以上字符串中存在
+            4. 替换指定的字符
+            5. 截取指定开始位置到结束位置的字符串
+            6. 找出以上字符串中出现次数最多的字符和出现的次数 
+        */
+
+        var str = prompt('请输入一个字符串：');
+        var choice, temp, ch, index1, index2;
+        var obj = {}; // 用于第6个功能
+        do {
+            choice = prompt('请选择所需操作：\n1. 返回字符串的长度\n2. 返回指定位置的字符\n3. 查找指定字符是否在输入字符串中存在\n4. 替换指定的第一个字符\n5. 截取特定一段字符串\n6. 返回字符串中出现次数最多的字符和出现的次数\n7. 退出');
+            switch (parseInt(choice)) {
+                // 返回字符串长度
+                case 1:
+                    alert('字符串长度为' + str.length);
+                    continue;
+                // 返回指定位置的字符
+                case 2:
+                    temp = prompt('请输入需要返回的字符索引号：');
+                    if (parseInt(temp) < 0 || parseInt(temp) > str.length - 1) {
+                        alert('请输入正确的索引号');
+                        continue;
+                    } else {
+                        alert('该位置的字符为' + str.charAt(parseInt(temp)));
+                        continue;
+                    }
+                // 查找指定字符是否在输入字符串中存在
+                case 3:
+                    temp = prompt('请输入需要查找的字符：');
+                    if (str.indexOf(temp) == -1) {
+                        alert('该字符不在该字符串中');
+                        continue;
+                    } else {
+                        alert('该字符在该字符串中，且第一次出现的索引号是' + str.indexOf(temp));
+                        continue;
+                    }
+                // 替换指定的第一个字符
+                case 4:
+                    temp = prompt('请输入在字符串中需要替换的字符：');
+                    ch = prompt('请输入替换的字符：');
+                    if (str.indexOf(temp) == -1) {
+                        alert('该字符不存在');
+                        continue;
+                    } else {
+                        alert('替换后的字符串为' + str.replace(temp, ch))
+                        // 如果要使用replaceAll()则需要自己定义
+                        continue;
+                    }
+                // 截取特定一段字符串
+                case 5:
+                    index1 = prompt('请输入需要截取的起始索引号：');
+                    index2 = prompt('请输入需要截取的结束索引号：');
+                    alert('截取的字符串为：' + str.slice(index1, index2));
+                    continue;
+                // 返回字符串中出现次数最多的字符和出现的次数
+                case 6:
+                    // 遍历字符串，将字符串中的每个字符都保存为对象的一个属性
+                    for (var i = 0; i < str.length; i++) {
+                        if (str[str.charAt(i)]) {
+                            str[str.charAt(i)]++; // 若对应属性存在则值加一
+                        } else {
+                            str[str.charAt(i)] = 1; // 若对应属性不存在则创建该属性并赋值为一
+                        }
+                    }
+                    // 遍历对象属性
+                    var max = 0; // 保存字符出现的最大值
+                    var targetChar; // 保存出现次数最多的字符
+                    for (var k in obj) {
+                        if (max < obj[k]) {
+                            max = obj[k];
+                            targetChar = k;
+                        }
+                    }
+                    alert('该字符串中出现次数最多的字符为' + targetChar + '，出现了' + max + '次');
+                    continue;
+                case 7:
+                    break;
+                default:
+                    alert('请输入正确的选择序号');
+                    continue;
+            }
+        } while (choice != 7)
+    </script>
+</head>
+
+<body>
+    <h1>A Set of Problems of String</h1>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleMessageBoard</title>
+    <style>
+        textarea {
+            resize: none;
+        }
+
+        li {
+            width: 200px;
+            height: 30px;
+            background-color: beige;
+        }
+
+        li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button id="btn_rls">发布</button>
+    </div>
+    <div>
+        <ul></ul>
+    </div>
+
+    <script>
+        /* 
+            编写一个简单的留言发布功能，实现添加、删除留言功能 
+        */
+
+        var msg = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+        var btn = document.getElementById('btn_rls');
+        btn.onclick = function () {
+            if (msg.value == '') {
+                alert('内容不能为空');
+                return false;
+            }
+            var li = document.createElement('li'); // 创建
+            li.innerHTML = msg.value + '<a href="javascript:;">删除</a>'; // 赋值
+            // 在href中使用javascript:;可以阻止链接跳转，一定程度上比#好用些
+            // 创建了一个留言节点就为该节点的子节点添加点击删除事件
+            li.children[0].onclick = function () {
+                ul.removeChild(this.parentNode);
+            }
+            ul.insertBefore(li, ul.children[0]); // 添加
+            msg.value = ''; // 发布后文本框中内容清空
+        }
+    </script>
+</body>
+
+</html>

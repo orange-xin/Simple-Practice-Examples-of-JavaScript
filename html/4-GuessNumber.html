@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <script>
+        /* 
+            程序随机生成一个1~10之间的整数数字，并让用户输入一个数字
+            1. 如果大于该数字，就提示数字大了继续猜
+            2. 如果小于该数字，就提示数字小了继续猜
+            3. 如果等于该数字，就提示猜对了并结束 
+        */
+
+        var ran = getRandomIntInclusive(1, 10);
+        var input, num;
+        do {
+            input = prompt('请输入一个1~10之间的整数进行猜测：');
+            // 将输入的内容转化为数字
+            num = parseInt(input);
+            // 开始判断
+            if (num < 1 || num > 10) {
+                alert('请输入大于等于1，小于等于10的数');
+                continue;
+            }else if(num < ran){
+                alert('猜小了哦~继续试试看！');
+                continue;
+            }else if(num > ran){
+                alert('猜大了哦~继续试试看！');
+                continue;
+            }else{
+                alert('恭喜你猜对啦！好厉害！')
+                break;
+            }
+        } while (1)
+
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Guess Number</h1>
+</body>
+
+</html>

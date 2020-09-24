@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormTableDynamically</title>
+    <style>
+        table {
+            width: 500px;
+            text-align: center;
+        }
+
+        thead {
+            background-color: lightgrey;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        tbody {
+            background-color: lightyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing=0>
+        <thead>
+            <tr>
+                <td>
+                    姓名
+                </td>
+                <td>
+                    会员等级
+                </td>
+                <td>
+                    联系电话
+                </td>
+                <td>
+                    操作
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        /* 
+            根据数据内容，动态生成表格
+        */
+        var datas = [
+            {
+                name: 'Anna',
+                level: 4,
+                tel: '123456'
+            },
+            {
+                name: 'Belinda',
+                level: 3,
+                tel: '234561'
+            },
+
+            {
+                name: 'Cindy',
+                level: 2,
+                tel: '345612'
+            },
+
+            {
+                name: 'Danny',
+                level: 1,
+                tel: '456123'
+            }
+        ]
+
+        var tb = document.querySelector('tbody');
+        // 生成行
+        for (var i = 0; i < datas.length; i++) {
+            var tr = document.createElement('tr');
+            tb.appendChild(tr);
+            // 生成单元格
+            for (var k in datas[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = datas[i][k]; // 为单元格赋值
+                tr.appendChild(td);
+            }
+            // 生成操作单元格及其内容
+            var td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            td.children[0].onclick = function () {
+                tb.removeChild(this.parentNode.parentNode);
+            }
+            tr.appendChild(td);
+        }
+
+    </script>
+</body>
+
+</html>

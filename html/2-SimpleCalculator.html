@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <script>
+        /* 
+            编写一个简易计算器，通过选择数字来分别实现加法、减法、乘法、除法运算以及退出操作 
+        */
+        
+        var num1, num2, res;
+        var i = 1;
+        do {
+            // 获取选项
+            var choice = prompt('欢迎使用简易计算器：\n1.加法运算\n2.减法运算\n3.乘法运算\n4.除法运算\n5.退出\n请输入您的选择：');
+            // choice是一个字符串，需要转换成数字
+            switch (parseInt(choice)) {
+                case 1:
+                    num1 = prompt('请输入第一个加数：');
+                    num2 = prompt('请输入第二个加数：');
+                    res = num1 + num2;
+                    alert('加法运算结果为：' + res);
+                    continue;
+                case 2:
+                    num1 = prompt('请输入被减数：');
+                    num2 = prompt('请输入减数：');
+                    res = num1 - num2;
+                    alert('减法运算结果为：' + res);
+                    continue;
+                case 3:
+                    num1 = prompt('请输入第一个乘数：');
+                    num2 = prompt('请输入第二个乘数：');
+                    res = num1 * num2;
+                    alert('乘法运算结果为：' + res);
+                    continue;
+                case 4:
+                    num1 = prompt('请输入被除数：');
+                    num2 = prompt('请输入除乘数：');
+                    res = num1 / num2;
+                    alert('除法运算结果为：' + res);
+                    continue;
+            }
+        } while (choice != 5)
+
+    </script>
+</head>
+
+<body>
+    <h1>Simple Calculator</h1>
+</body>
+
+</html>
