@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwoPagesTwo</title>
+</head>
+
+<body>
+    <div class="msgBox"></div>
+    <div class="promptBox">您将在5秒后跳转到前一页面</div>
+    <script>
+        // 带有上一页面输入用户名的问候语
+        // 获取参数（包括？问好分割符）
+        var query = location.search;
+        // 处理参数，先截取问号后的内容，再将等号两边的内容分开获取需要的
+        var username = query.substr(1).split('=')[1];
+        var msgBox = document.querySelector('.msgBox');
+        msgBox.innerHTML = username + '你好，欢迎访问本页面！';
+
+        // 自动跳转部分 5秒 消除延时空白
+        var promptBox = document.querySelector('.promptBox');
+        var timer = 4;
+        window.addEventListener('load', function () {
+            setInterval(function () {
+                if (timer == 0) {
+                    location.href = '20-TwoPagesOne.html';
+                } else {
+                    promptBox.innerHTML = '您将在' + timer + '秒后跳转到前一页面';
+                    timer--;
+                }
+
+            }, 1000)
+        })
+
+    </script>
+</body>
+
+</html>

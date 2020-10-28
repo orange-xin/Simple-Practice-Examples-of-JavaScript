@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendMessageButton</title>
+</head>
+
+<body>
+    <div>
+        发送短信：
+        <input type="text">
+        <button>发送</button>
+    </div>
+    <script>
+        /* 
+            编写一个小功能：发送短信按钮
+            点击了之后过一定时间才能再次点击 
+        */
+
+        // 获取元素
+        var btn = document.querySelector('button');
+
+        var time = 3; // 初始秒数
+
+        btn.addEventListener('click', function () {
+            btn.disabled = true;
+            var timer = setInterval(function () {
+                if (time == 0) {
+                    btn.disabled = false;
+                    btn.innerHTML = '发送';
+                    clearInterval(timer);
+                } else {
+                    btn.innerHTML = '还剩' + time + '秒可再次发送';
+                    time--;
+                }
+            }, 1000);
+        })
+    </script>
+</body>
+
+</html>

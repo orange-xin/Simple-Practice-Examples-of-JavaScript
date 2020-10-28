@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountdownVer2</title>
+    <style>
+        div {
+            text-align: center;
+        }
+
+        span {
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="day">day</span>
+        <span class="hour">h</span>
+        <span class="minute">min</span>
+        <span class="second">sec</span>
+    </div>
+    <script>
+        /* 
+            制作一个倒计时，显示距离设定时间每秒的变化 
+        */
+
+        // 获取需要改变的元素
+        var day = document.querySelector('.day');
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+
+        // 设定倒计时的开始时间
+        var inputTime = +new Date('2022-2-22 18:00:00'); // the input time 返回的是输入总时间的毫秒数
+
+        // 先调用一次函数，消除interval延迟而显示预设字符串的问题
+        countDown();
+
+        // 设置间隔计时器
+        setInterval(countDown, 1000);
+
+        // 倒计时函数
+        function countDown(input) {
+            var nowTime = +new Date(); // the time right now 返回的是毫秒
+            var times = (inputTime - nowTime) / 1000; // time difference 转化成秒
+            // day 天
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d; // 格式化
+            day.innerHTML = d;
+            // hour 时
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h; // 格式化
+            hour.innerHTML = h;
+            // minute 分钟
+            var min = parseInt(times / 60 % 60);
+            min = min < 10 ? '0' + min : min; // 格式化
+            minute.innerHTML = min;
+            // second 秒
+            var sec = parseInt(times % 60);
+            sec = sec < 10 ? '0' + sec : sec; //格式化
+            second.innerHTML = sec;
+        }
+    </script>
+</body>
+
+</html>

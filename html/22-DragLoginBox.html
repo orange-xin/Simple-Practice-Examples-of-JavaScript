@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DragLoginBox</title>
+    <style>
+        .login_btn_box {
+            text-align: center;
+        }
+
+        .login_btn {
+            width: 300px;
+            height: 50px;
+            font-size: 25px;
+        }
+
+        .login_box {
+            display: none;
+            width: 500px;
+            height: 100px;
+            position: relative;
+            background-color: #ffffff;
+        }
+
+        .login_box_title {
+            height: 40px;
+            font-size: 30px;
+            background-color: azure;
+            text-align: center;
+        }
+
+        .login_close_btn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 40px;
+            height: 20px;
+            font-size: 5px;
+            background-color: lightyellow;
+        }
+
+        .login_input {
+            text-align: center;
+        }
+
+        input {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login_btn_box">
+        <button class="login_btn">点击登录</button>
+    </div>
+    <div class="login_box">
+        <div class="login_box_title">登录</div>
+        <button class="login_close_btn">关闭</button>
+        <div class="login_input">
+            <div class="login_user">
+                用户名：
+                <input type="text" placeholder="请输入您的用户名">
+            </div>
+            <div class="login_pwd">
+                &nbsp;&nbsp;&nbsp;密码：
+                <input type="password" placeholder="请输入您的密码">
+            </div>
+
+        </div>
+    </div>
+    <script>
+        /*
+            1、点击弹出层会弹出登录框（模态框），并显示灰色半透明的遮挡层
+            2、点击关闭按钮，可以关闭模态框，并且同时关闭灰色半透明遮挡层
+            3、鼠标放到模态框最上面一行，可以按住鼠标拖拽模态框在页面中移动
+            4、鼠标松开可以停止拖动模态框移动
+        */
+
+        // 点击显示登录框
+        var loginBtn = document.querySelector('.login_btn');
+        var body = document.body;
+        var loginBox = document.querySelector('.login_box');
+        loginBtn.addEventListener('click', function () {
+            body.style.backgroundColor = 'rgb(128,128,128)';
+            loginBox.style.display = 'block';
+            this.style.display = 'none';
+        })
+
+        // 关闭登录框
+        var close = document.querySelector('.login_close_btn');
+        close.addEventListener('click', function () {
+            body.style.backgroundColor = '#ffffff';
+            loginBox.style.display = 'none';
+            loginBtn.style.display = 'inline';
+        })
+
+        // 拖动登录框
+        var title = document.querySelector('.login_box_title');
+        title.addEventListener('mousedown', function (e) {
+            // 鼠标在title内的坐标
+            var x = e.pageX - loginBox.offsetLeft;
+            var y = e.pageY - loginBox.offsetTop;
+            // 拖动
+            document.addEventListener('mousemove', move)
+            function move(e) {
+                // 记住style的上下左右值是没有单位的，赋值的时候需要加上单位
+                loginBox.style.left = e.pageX - x + 'px';
+                loginBox.style.top = e.pageY - y + 'px';
+            }
+            title.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', move)
+            })
+        })
+    </script>
+</body>
+
+</html>

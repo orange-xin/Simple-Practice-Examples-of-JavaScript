@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrollAndSidebar</title>
+    <style>
+        .header {
+            background-color: bisque;
+            width: 80%;
+            height: 200px;
+            margin: auto;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .banner {
+            background-color: coral;
+            width: 80%;
+            height: 500px;
+            margin: auto;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .main {
+            background-color: goldenrod;
+            width: 80%;
+            height: 1000px;
+            margin: auto;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .sidebar {
+            position: absolute;
+            top: 300px;
+            right: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">header</div>
+    <div class="banner">banner</div>
+    <div class="main">main</div>
+    <div class="sidebar">return</div>
+    <script>
+        /* 
+            模拟淘宝页面侧边栏
+            实现随着滚动条拖动从而实现不同的展示效果的功能 
+        */
+
+        // get elements
+        var sidebar = document.querySelector('.sidebar');
+        var banner = document.querySelector('.banner');
+        var mainPart = document.querySelector('.main');
+        // 效果开始时被卷去的页面高度大小
+        var startTop = banner.offsetTop;
+        // 侧边栏位置固定后的top数值
+        var slidebarTop = sidebar.offsetTop - startTop;
+        document.addEventListener('scroll', function () {
+            if (window.pageYOffset >= startTop) {
+                sidebar.style.position = 'fixed';
+                sidebar.style.top = slidebarTop + 'px';
+            } else {
+                sidebar.style.position = 'absolute';
+                sidebar.style.top = 300 + 'px';
+            }
+        })
+    </script>
+</body>
+
+</html>

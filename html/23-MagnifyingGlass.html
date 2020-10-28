@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagnifyingGlass</title>
+    <style>
+        body {
+            position: relative;
+        }
+
+        .img_item_box {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .img_item {
+            width: 400px;
+            height: 400px;
+        }
+
+        .mask {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 0;
+            left: 0;
+            background-color: rgb(207, 148, 74);
+            opacity: .5;
+            cursor: move;
+            display: none;
+        }
+
+        .img_magnify_box {
+            position: absolute;
+            left: 410px;
+            top: 0px;
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            display: none;
+            overflow: hidden;
+        }
+
+        .img_magnify {
+            width: 700px;
+            height: 700px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img_item_box">
+        <img src="../img/jd_item.JPG" alt="京东商品图片" class="img_item">
+        <div class="mask"></div>
+        <div class="img_magnify_box">
+            <img src="../img/jd_item.JPG" alt="" class="img_magnify">
+        </div>
+    </div>
+    <script>
+        var preview_img = document.querySelector('.img_item_box');
+        var mask = document.querySelector('.mask');
+        var magnify_box = document.querySelector('.img_magnify_box');
+        var magnify_img = document.querySelector('.img_magnify');
+
+        // 遮罩层和放大效果盒子的显示与隐藏
+        preview_img.addEventListener('mouseover', function () {
+            mask.style.display = 'block';
+            magnify_box.style.display = 'block';
+        })
+        preview_img.addEventListener('mouseout', function () {
+            mask.style.display = 'none';
+            magnify_box.style.display = 'none';
+        })
+
+        // 遮罩层的移动
+        preview_img.addEventListener('mousemove', function (e) {
+            // 鼠标在盒子内的坐标
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            // 遮罩层移动的距离
+            var maskX = x - mask.offsetWidth / 2;
+            var maskY = y - mask.offsetHeight / 2;
+            // 遮罩层移动的最大距离
+            var maskMaxX = preview_img.offsetWidth - mask.offsetWidth;
+            var maskMaxY = preview_img.offsetHeight - mask.offsetHeight;
+            // 因为是正方形，该demo里maxX和maxY相等
+
+            // 控制遮罩层在盒子内部移动
+            if (maskX < 0) {
+                maskX = 0;
+            } else if (maskX > maskMaxX) {
+                maskX = maskMaxX;
+            }
+            if (maskY < 0) {
+                maskY = 0;
+            } else if (maskY > maskMaxY) {
+                maskY = maskMaxY;
+            }
+            mask.style.left = maskX + 'px';
+            mask.style.top = maskY + 'px';
+
+            // 放大效果图盒子内图片的移动
+            // 放大效果图片移动的最大距离
+            var bigMaxX = magnify_img.offsetWidth - magnify_box.offsetWidth;
+            var bigMaxY = magnify_img.offsetHeight - magnify_box.offsetHeight;
+            // 放大效果图片移动的距离 根据等比计算得到
+            var bigX = maskX * bigMaxX / maskMaxX;
+            var bigY = maskY * bigMaxY / maskMaxY;
+            magnify_img.style.left = -bigX + 'px';
+            magnify_img.style.top = -bigY + 'px'; // 这里使用负值是因为大图和遮罩层是反方向移动的
+        })
+    </script>
+</body>
+
+</html>
